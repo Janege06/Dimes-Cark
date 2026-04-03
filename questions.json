@@ -1,0 +1,188 @@
+{
+  "s": [
+    {
+      "q": "Dimes, meyve islemede suyu azaltmak icin hangi teknolojiyi kullaniyor?",
+      "opts": [
+        "Soguk pres",
+        "Kapali devre geri donusum",
+        "Yuksek basinc havasizlastirma",
+        "Dondurarak kurutma"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Geri donusturulebilir ambalaj kullanimi hangi UN Surdurulebilir Kalkinma Hedefi ile uyumludur?",
+      "opts": [
+        "SDG 2",
+        "SDG 12",
+        "SDG 7",
+        "SDG 15"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Karbon ayak izi azaltmak icin lojistikte hangi yakit tercih edilmektedir?",
+      "opts": [
+        "Benzin",
+        "LPG",
+        "Biyoyakit",
+        "Mazot"
+      ],
+      "ans": 2
+    },
+    {
+      "q": "Dimes'in bahcelerinde kullanimini azaltmayi hedefledigi tarim urunleri hangileridir?",
+      "opts": [
+        "Gubre ve pestisit",
+        "Sulama suyu",
+        "Hasat makineleri",
+        "Soguk hava deposu"
+      ],
+      "ans": 0
+    },
+    {
+      "q": "Surdurulebilir tarimda 'doner urun sistemi' ne amacla kullanilir?",
+      "opts": [
+        "Verimi artirmak icin",
+        "Toprak sagligi ve biyocesitliligi korumak icin",
+        "Sulama maliyetini dusurmek icin",
+        "Hasat zamanini kisaltmak icin"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Cam ambalaj hangi acidan plastikten daha surdurulebilirdir?",
+      "opts": [
+        "Daha hafiftir",
+        "Sonsuz geri donusturulebilir",
+        "Daha ucuz uretilir",
+        "Daha cok tasir"
+      ],
+      "ans": 1
+    }
+  ],
+  "u": [
+    {
+      "q": "Dimes'in amblemindeki ikonik renk hangisidir?",
+      "opts": [
+        "Mavi",
+        "Yesil",
+        "Kirmizi",
+        "Turuncu"
+      ],
+      "ans": 2
+    },
+    {
+      "q": "Dimes hangi yil kurulmustur?",
+      "opts": [
+        "1958",
+        "1966",
+        "1972",
+        "1980"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Dimes'in portakal suyunda kullandigi en yaygin uretim yontemi hangisidir?",
+      "opts": [
+        "Konsantreden",
+        "Dogrudan sikma (NFC)",
+        "Dondurularak kurutma",
+        "Buharla isitma"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "NFC meyve suyu ne anlama gelir?",
+      "opts": [
+        "Net Fruit Concentrate",
+        "Not From Concentrate",
+        "Natural Fresh Citrus",
+        "New Fermented Citrus"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Dimes hangi ulkede uretim yapmaktadir?",
+      "opts": [
+        "Almanya",
+        "Fransa",
+        "Turkiye",
+        "Italya"
+      ],
+      "ans": 2
+    },
+    {
+      "q": "Asagidakilerden hangisi Dimes urun kategorisinde yer almaz?",
+      "opts": [
+        "Meyve suyu",
+        "Nektar",
+        "Gazli icecek",
+        "Enerji icecegi"
+      ],
+      "ans": 3
+    }
+  ],
+  "g": [
+    {
+      "q": "Dunyanin en cok uretilen meyve suyu hangisidir?",
+      "opts": [
+        "Elma",
+        "Portakal",
+        "Uzum",
+        "Ananas"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "C vitamini en zengin meyvelerden biri hangisidir?",
+      "opts": [
+        "Muz",
+        "Elma",
+        "Guava",
+        "Armut"
+      ],
+      "ans": 2
+    },
+    {
+      "q": "Meyve suyunda dogal olarak bulunan seker turu hangisidir?",
+      "opts": [
+        "Sakkroz",
+        "Fruktoz",
+        "Laktoz",
+        "Maltoz"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Pastorizasyon islemini ilk kim gelistirmistir?",
+      "opts": [
+        "Marie Curie",
+        "Louis Pasteur",
+        "Alexander Fleming",
+        "Isaac Newton"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Bir portakalda ortalama kac ml meyve suyu bulunur?",
+      "opts": [
+        "20-30 ml",
+        "50-80 ml",
+        "100-150 ml",
+        "200-250 ml"
+      ],
+      "ans": 1
+    },
+    {
+      "q": "Meyve suyu uretiminde 'Brix' olcusu neyi gosterir?",
+      "opts": [
+        "Asiditesi",
+        "Seker icerigini",
+        "Renk yogunlugunu",
+        "Viskoziteyi"
+      ],
+      "ans": 1
+    }
+  ]
+}
