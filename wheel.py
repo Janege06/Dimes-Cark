@@ -49,7 +49,7 @@ class Wheel:
         Category.SURDURULEBILIRLIK  # s
     ]
 
-    def __init__(self):
+    def __init__(self, emoji_font=None):
         self.angle = 0
         self.is_spinning = False
         self.start_angle = 0
@@ -57,6 +57,7 @@ class Wheel:
         self.start_time = 0
         self.duration = 0
         self.on_landed_callback = None
+        self.emoji_font = emoji_font
 
     def get_random_category(self) -> Category:
         return random.choice(self.wheel_segments)
@@ -118,12 +119,21 @@ class Wheel:
 
     def _draw_rotated_text(self, surface, text, x, y, angle, is_icon=False):
         font_size = 45 if is_icon else 20
-        # Use a more common font if serif/Arial is not found
-        if is_icon:
-            try:
-                font = pygame.font.Font("/usr/share/fonts/truetype/NotoColorEmoji.ttf", font_size)
-            except:
-                font = pygame.font.SysFont("dejavuserif", font_size, bold=True)
+        
+        if is_icon and self.emoji_font:
+            font = self.emoji_font
+            # Ensure it's scaled for the wheel if it's the 32px font from main
+            # or recreate it with larger size for icons
+            if font.get_height() < font_size:
+                try:
+                    # If we can get the path from main's font loading, we could recreate it
+                    # But for now, we'll just scale the rendered surface later
+                    pass
+                except:
+                    pass
+        elif is_icon:
+            # Emoji fonts might not be available in WASM, using fallback
+            font = pygame.font.SysFont("Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, Android Emoji, EmojiSymbols, symbola, dejavuserif", font_size, bold=True)
         else:
             font = pygame.font.SysFont("dejavusans", font_size, bold=True)
         
@@ -154,6 +164,12 @@ class Wheel:
                 surface.blit(rot_s, rect)
         else:
             txt_s = font.render(text, True, (255, 255, 255))
+            
+            # Scale if necessary (if font was smaller than font_size)
+            if is_icon and txt_s.get_height() < font_size * 0.8:
+                ratio = font_size / txt_s.get_height()
+                txt_s = pygame.transform.smoothscale(txt_s, (int(txt_s.get_width() * ratio), font_size))
+
             rot_s = pygame.transform.rotate(txt_s, -math.degrees(angle + math.pi/2))
             
             # Center icons properly

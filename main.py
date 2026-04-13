@@ -1,11 +1,12 @@
 import pygame
 import math
+import asyncio
 from game_state import GameState
 from question_manager import QuestionManager, Category
 from ui import Ui, Button, Panel, StatBox, ProgressBar, CategoryTag, render_with_emojis, draw_text_wrapped
 from wheel import Wheel
 
-def main():
+async def main():
     pygame.init()
     screen = pygame.display.set_mode((1280, 720))
     pygame.display.set_caption("Dimes - Bilgi Çarkı")
@@ -29,15 +30,39 @@ def main():
     font_stat_val = pygame.font.SysFont("arial", 22, bold=True)
     font_stat_lbl = pygame.font.SysFont("arial", 12, bold=True)
     
-    try:
-        font_emoji = pygame.font.Font("/usr/share/fonts/truetype/NotoColorEmoji.ttf", 24)
-    except:
-        font_emoji = None
+    # Use system emoji fonts that might be available in browser/WASM
+    # More extensive list including lowercase, no-space, and common names
+    emoji_font_names = [
+        "Segoe UI Emoji", "segoeuiemoji", 
+        "Apple Color Emoji", "applecoloremoji",
+        "Noto Color Emoji", "notocoloremoji",
+        "Android Emoji", "androidemoji",
+        "EmojiSymbols", "emojisymbols",
+        "Symbola", "symbola",
+        "Segoe UI Symbol", "segoeuisymbol",
+        "DejaVu Sans", "dejavusans"
+    ]
+    
+    font_emoji = None
+    for f_name in emoji_font_names:
+        matched = pygame.font.match_font(f_name)
+        if matched:
+            try:
+                font_emoji = pygame.font.Font(matched, 32)
+                # Quick check if it's not just a generic font by rendering an emoji
+                # (though this doesn't guarantee it's not a square, some fonts have the square glyph)
+                if font_emoji.render("🌿", True, (255,255,255)).get_width() > 10:
+                    break
+            except:
+                continue
+    
+    if font_emoji is None:
+        font_emoji = pygame.font.SysFont("arial, sans-serif", 32)
 
     # Components
     ui = Ui()
     qm = QuestionManager()
-    wheel = Wheel()
+    wheel = Wheel(emoji_font=font_emoji)
     gs = GameState()
 
     # HUD Elements
@@ -142,6 +167,7 @@ def main():
 
     while running:
         dt = clock.tick(60) / 1000.0
+        await asyncio.sleep(0)
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
@@ -324,4 +350,4 @@ def main():
     pygame.quit()
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())

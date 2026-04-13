@@ -15,11 +15,20 @@ def render_with_emojis(surface: pygame.Surface, text: str, font: pygame.font.Fon
     for part in parts:
         if not part:
             continue
-        if emoji_pattern.match(part):
-            s = emoji_font.render(part, True, (255, 255, 255))
+        if emoji_pattern.match(part) and emoji_font:
+            try:
+                s = emoji_font.render(part, True, (255, 255, 255))
+                # Check if it rendered something significant or just a tiny square
+                if s.get_width() < 5 and len(part) > 0:
+                     raise Exception("Emoji failed to render properly")
+            except:
+                # Fallback if the font cannot render this specific character
+                s = font.render(part, True, color)
+            
             target_h = font.get_height()
-            ratio = target_h / s.get_height()
-            s = pygame.transform.smoothscale(s, (int(s.get_width() * ratio), target_h))
+            if s.get_height() > 0:
+                ratio = target_h / s.get_height()
+                s = pygame.transform.smoothscale(s, (max(1, int(s.get_width() * ratio)), target_h))
         else:
             s = font.render(part, True, color)
         
@@ -56,11 +65,15 @@ def draw_text_wrapped(surface: pygame.Surface, text: str, font: pygame.font.Font
             emoji_pattern = re.compile(r'([\U00010000-\U0010ffff\u2600-\u27ff])')
             parts = emoji_pattern.split(test_line)
             for part in parts:
-                if emoji_pattern.match(part):
-                    s = emoji_font.render(part, True, (255, 255, 255))
-                    target_h = font.get_height()
-                    ratio = target_h / s.get_height()
-                    w += int(s.get_width() * ratio)
+                if emoji_pattern.match(part) and emoji_font:
+                    try:
+                        s = emoji_font.render(part, True, (255, 255, 255))
+                        if s.get_width() < 5: raise Exception()
+                        target_h = font.get_height()
+                        ratio = target_h / s.get_height()
+                        w += max(1, int(s.get_width() * ratio))
+                    except:
+                        w += font.size(part)[0]
                 else:
                     w += font.size(part)[0]
         else:
